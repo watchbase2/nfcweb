@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width">
+        <title>Bonaventura NFCサイト</title>
+        <style>
+        input{
+                font-size:18px;
+                background-color: black;
+                color: white;
+        }
+
+        @media screen and (max-width: 768px) {
+                input{
+                        font-size:18px;
+                        background-color: black;
+                        color: white;
+                }
+        }
+ 
+        @media screen and (max-width: 480px) {
+                input{
+                        font-size:16px;
+                        background-color: black;
+                        color: white;
+                }
+        }
+        </style>
+        <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+        
+</head>
+<body bgcolor="lightyellow" style="text-align:center">
+    <h1>BONAVENTURA</h1>
+    <script>
+        
+        window.onload = function() {
+          showLoading(false);
+        }
+        
+        function showLoading(show) {
+          var loading = document.getElementById('loading');
+          loading.hidden = !show;
+            if (show) {
+                setTimeout(showLoading,2000,false);
+            }
+        }
+        function productPage() {
+           var mode = document.getElementById("mode");
+           mode.value = "product";
+           showLoading(true);
+           document.form.submit();
+        }
+        function validateCheck() {
+            var mode = document.getElementById("mode");
+            mode.value = "validate";
+            showLoading(true);
+            document.form.submit();
+        }
+
+    </script>
+    <form name="form" action="/validate" method="POST">
+        {% csrf_token %}
+        </br>
+        <input type="hidden" id="mode" name="mode" value="">
+        <input type="hidden" id="uid" name="uid" value={{uid}}>
+        <input type="hidden" id="sn" name="sn" value={{sn}}>
+        <input type="button" name="validate" value="真贋チェック" onClick="validateCheck()" style="width:200px"></br></br>
+        <input type="button" name="product" value="商品ページ" onClick="productPage()" style="width:200px"></br></br>
+        <input type="button" name="maintenance" value="修理依頼" onClick="maintenance()" style="width:200px"></br></br></br>
+        
+        <a href = "https://jp.bonaventura.shop/pages/contact">お問合わせ</br></br></br>
+        <div id="loading" style="text-align:center">
+        <span class="loading01" style="text-align:center;"><span></span></span></div>
+
+    </form>
+</body>
+</html>

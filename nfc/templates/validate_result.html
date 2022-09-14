@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Bonaventura NFCサイト</title>
+    <style>
+    p{
+        font-size:18px;
+    }
+
+    @media screen and (max-width: 768px) {
+        p{
+            font-size:16px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        p{
+            font-size:16px;
+        }
+    }
+    </style>
+</head>
+<body bgcolor="lightyellow">
+    <h1>真贋チェック結果</h1>
+<p>この商品は<b>{% if validated　%}正規品{% else %}非正規品{% endif %}</b>です。&nbsp;<br/></p>
+    <p>商品名 : <a href="{{productPage}}">{{product_name}}</a></p>
+    <p>SKU : {{sku}}</p>
+    <p>シリアル番号 : {{snumber}}</p>
+    <p>UID : {{uid}}</p>
+    <br>
+    <hr/>
+  
+    <input type="button" onClick="history.back()" value="戻る">
+
+</body>
+</html>
